@@ -31,10 +31,12 @@ class RegisterController extends Controller
             'password' => Hash::make('vhealth123'), #default vhealt12345
             'specialization_id' => $request->specialization,
             'department_id' => $request->department,
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'avatar' => $request->avatar
 
         ]);
 
+        $this->saveDoctorAvatar($doctor);
         # dispatch job to send doctor a mail on registration
 
         if (SendDoctorRegistrationAlert::dispatch($doctor)) {
@@ -65,4 +67,26 @@ class RegisterController extends Controller
 
         ], 200);
     }
+
+
+    public function saveDoctorAvatar(Doctor $doctor)
+    {
+        
+        if(request()->hasFile('avatar'))
+        {
+            $fileNameToStore = request()->file('avatar')->getClientOriginalName(); 
+
+            # image path
+            $path = 'public/images/doctors/'. $doctor->id;
+
+            request()->file('avatar')->storeAs($path, $fileNameToStore);
+
+            $doctor->avatar = '/storage/images/doctors'.$doctor->id. '/'. $fileNameToStore;
+
+            $doctor->save();
+
+        }
+
+    }
+
 }
