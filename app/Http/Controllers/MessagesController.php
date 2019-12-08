@@ -10,6 +10,7 @@ use App\Employee;
 use App\Department;
 use App\Pharmacist;
 use App\Conversation;
+use App\Events\MessageReceived;
 use App\Http\Requests\MessagesRequest;
 use App\Http\Requests\DoctorPatientsChatRequest;
 use App\Http\Requests\DepartmentsChatRequest;
@@ -64,20 +65,20 @@ class MessagesController extends Controller
 
     public function patient_doctor(MessagesRequest $request) 
     {
-        $appointment = Appointment::where([
-            'user_id' => auth()->guard('api')->id(),
-            'approved' => true,
-            'doctor_id' => $request->id,
-            ['appointment_date', '>=', now()]
-        ])->get();
+        // $appointment = Appointment::where([
+        //     'user_id' => auth()->guard('api')->id(),
+        //     'approved' => true,
+        //     'doctor_id' => $request->id,
+        //     // ['appointment_date', '>=', now()]
+        // ])->get();
 
-        if ($appointment->count() > 0) {
+        // if ($appointment->count() > 0) {
             $this->store(auth()->guard('api')->user(), 'doctor_patientschat');
-        }else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 403);
-        }
+        // }else {
+        //     return response()->json([
+        //         'message' => 'Unauthorized'
+        //     ], 403);
+        // }
 
 
     }
@@ -138,6 +139,8 @@ class MessagesController extends Controller
             'message' => nl2br(request()->message),
 
             'attachment' => $this->storeFile($conversation) ?? null
+
+            
         
         ];
         
@@ -185,11 +188,13 @@ class MessagesController extends Controller
 
             'message' => request()->message,
 
-            'attachment' => $this->storeFile($conversation) ?? null #if no file attachment set field to null
-        
+            'attachment' => $this->storeFile($conversation) ?? null, #if no file attachment set field to null
+            
+            'owner' => request()->owner
         ];
         #store message and attachment
-        $conversation->addMessage($message);
+        $message = $conversation->addMessage($message);
+        event(new MessageReceived($message));
 
         return ['message' => $message];
         

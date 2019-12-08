@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DoctorsAppointmentResource extends JsonResource
+class PatientRecordsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +14,8 @@ class DoctorsAppointmentResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = User::find($this->user_id); 
         return [
-            'id' => $this->id,
-            'patient_name' => $user->name,
-            'appointment_date' => $this->appointment_date,
-            'approved' => $this->approved
+            ''
         ];
     }
 }

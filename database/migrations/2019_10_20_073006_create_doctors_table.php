@@ -18,8 +18,9 @@ class CreateDoctorsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->integer('department_id');
-            $table->integer('specialization_id');
+            $table->string('title');
+            $table->string('specialization');
+            $table->string('hospital');
             $table->string('phone');
             $table->string('avatar')->nullable();
             $table->timestamps();
