@@ -164,6 +164,7 @@ return [
         App\Providers\DropboxServiceProvider::class,
         
 
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -236,6 +237,7 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'DocuSign'  => LaravelDocusign\Facades\DocuSign::class,
 
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
