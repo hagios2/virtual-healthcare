@@ -16,8 +16,9 @@ class StaffResource extends JsonResource
     public function toArray($request)
     {
         $employee = Employee::find($this->id);
+        
         return [
-
+            "id" => $this->id,
             "name" => $this->name,
             "qualification" => $this->qualification,
             "staff_type" => $employee->type->staff_type,

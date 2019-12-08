@@ -31,7 +31,7 @@ class DoctorsRegistrationFormRequest extends FormRequest
             'specialization' => ['required', 'integer'],
             'department' => ['required', 'integer'],
             'phone' => ['string', 'min:10', 'unique:doctors'],
-            'avatar' => 'required|image|mimes:png,jpg,jpeg'
+            'avatar' => 'nullable|image|mimes:png,jpg,jpeg'
         ];
     }
 }

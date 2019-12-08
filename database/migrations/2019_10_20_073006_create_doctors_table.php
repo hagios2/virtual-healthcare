@@ -21,6 +21,7 @@ class CreateDoctorsTable extends Migration
             $table->integer('department_id');
             $table->integer('specialization_id');
             $table->string('phone');
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

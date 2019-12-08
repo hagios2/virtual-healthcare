@@ -16,6 +16,12 @@ class Employee extends Authenticatable
 
     protected $guarded = ['id'];
 
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+
     
     public function type()
     {

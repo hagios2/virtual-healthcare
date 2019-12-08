@@ -34,7 +34,7 @@ class Conversation extends Model
     {
        $storedMessage = $this->message()->create($chatMessage);
 
-        return $storedMessage;
+        /* return $storedMessage; */
 
     }
     

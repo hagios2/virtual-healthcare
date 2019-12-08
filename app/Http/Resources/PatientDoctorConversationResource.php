@@ -28,7 +28,8 @@ class PatientDoctorConversationResource extends JsonResource
     }
 
     public function forDoctor()
-    {   
+    {
+
         if($this->user1_id == $this->user2_id)
         {
             $patient = User::find($this->user2_id);  #use any of the ids to return the patient

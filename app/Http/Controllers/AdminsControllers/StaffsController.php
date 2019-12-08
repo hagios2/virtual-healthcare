@@ -18,7 +18,7 @@ class StaffsController extends Controller
     
     public function __construct()
     {
-        $this->middleware(['multiauth:admin','api']);
+        $this->middleware(['api']);
     }
 
 
@@ -106,10 +106,6 @@ class StaffsController extends Controller
      */
     public function show(Employee $employee)
     {
-        $employee['staff_type'] = $employee->type->staff_type;
-
-        $employee['department'] = $employee->staffDepartment->department; 
-
         return new StaffResource($employee);
     }
 
@@ -164,14 +160,14 @@ class StaffsController extends Controller
         {
             $fileNameToStore = request()->file('avatar')->getClientOriginalName(); 
 
-            # image path
-            $path = 'public/images/employees/'. $employee->id;
+              # image path
+              $path = '/images/employees/'. $employee->id;
 
-            request()->file('avatar')->storeAs($path, $fileNameToStore);
+              $employee->avatar = request()->file('avatar')->storeAs($path, $fileNameToStore, 'dropbox');
+              
+  
+              $employee->save();
 
-            $employee->avatar = '/storage/images/employees'.$employee->id. '/'. $fileNameToStore;
-
-            $employee->save();
 
         }
 

@@ -8,10 +8,16 @@ use App\PasswordReset;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class PasswordResetController extends Controller
 {
-    //
+    protected function guard()
+    {
+        return Auth::guard('guard-name');
+    }
+
+    
     public function create(Request $request) 
     {
         $request->validate([

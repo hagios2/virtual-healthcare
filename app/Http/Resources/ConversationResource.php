@@ -38,7 +38,7 @@ class ConversationResource extends JsonResource
         }
             return [
                 
-                'id' => $patient['id'],
+                'id' => $doctor['id'],
 
                 'name' => $doctor['name'],
 

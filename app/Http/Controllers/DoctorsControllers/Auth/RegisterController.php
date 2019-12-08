@@ -33,7 +33,6 @@ class RegisterController extends Controller
             'department_id' => $request->department,
             'phone' => $request->phone,
             'avatar' => $request->avatar
-
         ]);
 
         $this->saveDoctorAvatar($doctor);
@@ -49,8 +48,6 @@ class RegisterController extends Controller
                 'Access-Control-Allow-Origin', '*'
             ]);
         }
-
-        //$doctors_token = $doctor->createToken('My Admin Token')->accessToken;
 
        
     }
@@ -77,11 +74,13 @@ class RegisterController extends Controller
             $fileNameToStore = request()->file('avatar')->getClientOriginalName(); 
 
             # image path
-            $path = 'public/images/doctors/'. $doctor->id;
+            $path = 'images/doctors/'. $doctor->id;
 
-            request()->file('avatar')->storeAs($path, $fileNameToStore);
+            $doctor->avatar = request()->file('avatar')->storeAs($path, $fileNameToStore, 'dropbox');
 
-            $doctor->avatar = '/storage/images/doctors'.$doctor->id. '/'. $fileNameToStore;
+             #= Storage::disk('dropbox')->url($path.'/'.$fileNameToStore);
+
+            //$doctor->avatar = '/storage/images/doctors'.$doctor->id. '/'. $fileNameToStore;
 
             $doctor->save();
 
