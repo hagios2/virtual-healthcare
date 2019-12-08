@@ -179,7 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-        LaravelDocusign\DocusignServiceProvider::class,
+        Tjphippen\Docusign\DocusignServiceProvider::class,
+        /* LaravelDocusign\DocusignServiceProvider::class, */
 
         SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
@@ -235,8 +236,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'DocuSign'  => LaravelDocusign\Facades\DocuSign::class,
-
+        'Docusign'  => Tjphippen\Docusign\Facades\Docusign::class,
+        /* 'DocuSign'  => LaravelDocusign\Facades\DocuSign::class,
+ */
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 

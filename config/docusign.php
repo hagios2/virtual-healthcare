@@ -2,31 +2,39 @@
 
 return [
 
-    /*
-     |--------------------------------------------------------------------------
-     | Docusign Host
-     |--------------------------------------------------------------------------
-     |
-     | Change this to production before going live
-     |
+    /**
+     * The DocuSign Integrator's Key
      */
 
-    'host' => 'https://demo.docusign.net/restapi',
+    'integrator_key' => env('DOCUSIGN_INTEGRATOR_KEY'),
 
-    /*
-     |--------------------------------------------------------------------------
-     | Docusign Default Credentials
-     |--------------------------------------------------------------------------
-     |
-     | These are the credentials that will be used if none are specified
-     |
+    /**
+     * The Docusign Account Email
      */
+    'email' => env('DOCUSIGN_USERNAME'),
 
-    'username' => env('DOCUSIGN_USERNAME'),
-
+    /**
+     * The Docusign Account Password
+     */
     'password' => env('DOCUSIGN_PASSWORD'),
 
-    'integrator_key' => env('DOCUSIGN_INTEGRATOR_KEY')
+    /**
+     * The version of DocuSign API (Ex: v1, v2)
+     */
+    'version' => 'v2',
 
+    /**
+     * The DocuSign Environment (Ex: demo, test, www)
+     */
+    'environment' => 'demo',
 
+    /**
+     * The DocuSign Account Id
+     */
+    'account_id' => env('DOCUSIGN_ACCOUNT_ID'),
+    
+    /**
+     * Envelope ID field (for Envelope trait) 
+     */
+    'envelope_field' => 'envelopeId',
 ];

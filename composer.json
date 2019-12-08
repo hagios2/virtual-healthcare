@@ -20,7 +20,7 @@
         "simplesoftwareio/simple-qrcode": "^2.0",
         "smartins/passport-multiauth": "^4.1",
         "spatie/flysystem-dropbox": "^1.2",
-        "tucker-eric/laravel-docusign": "^2.1"
+        "tjphippen/docusign": "0.3.*@dev"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

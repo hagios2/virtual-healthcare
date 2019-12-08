@@ -61,6 +61,8 @@ Route::post('department/{department}/message', 'MessagesController@storeDepartme
 
 Route::get('/{conversation}/conversation', 'MessagesController@chatWith');
 
+Route::get('/digital-signature', 'DigitalSignatureController@index');
+
 Route::get('/message-attachment/{message}/download', 'MessagesController@download');
 
 
